@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { API_URL } from '../config';
 
 export default function AdminDashboard({ currentUser }) {
   const [employees, setEmployees] = useState([]);
@@ -21,7 +22,7 @@ export default function AdminDashboard({ currentUser }) {
     const token = localStorage.getItem('token');
 
     try {
-      const res = await fetch('http://localhost:5000/api/employees', {
+      const res = await fetch(`${API_URL}/api/employees`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       const data = await res.json();
@@ -45,7 +46,7 @@ export default function AdminDashboard({ currentUser }) {
 
     const token = localStorage.getItem('token');
     try {
-      const res = await fetch('http://localhost:5000/api/employees', {
+      const res = await fetch(`${API_URL}/api/employees`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -78,7 +79,7 @@ export default function AdminDashboard({ currentUser }) {
 
     const token = localStorage.getItem('token');
     try {
-      const res = await fetch(`http://localhost:5000/api/employees/${id}`, {
+      const res = await fetch(`${API_URL}/api/employees/${id}`, {
         method: 'DELETE',
         headers: { Authorization: `Bearer ${token}` }
       });

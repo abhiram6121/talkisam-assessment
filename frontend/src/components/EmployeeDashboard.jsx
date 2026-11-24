@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { API_URL } from '../config';
 
 export default function EmployeeDashboard({ currentUser, onProfileUpdated }) {
   const [profile, setProfile] = useState(null);
@@ -14,7 +15,7 @@ export default function EmployeeDashboard({ currentUser, onProfileUpdated }) {
     setLoading(true);
     const token = localStorage.getItem('token');
     try {
-      const res = await fetch('http://localhost:5000/api/profile', {
+      const res = await fetch(`${API_URL}/api/profile`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       const data = await res.json();
@@ -43,7 +44,7 @@ export default function EmployeeDashboard({ currentUser, onProfileUpdated }) {
 
     const token = localStorage.getItem('token');
     try {
-      const res = await fetch('http://localhost:5000/api/profile', {
+      const res = await fetch(`${API_URL}/api/profile`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
